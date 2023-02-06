@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fale conosco</title>
+</head>
+<body>
+    <style>
+        input{
+            width: 400px;
+        }
+        #form{
+            display:flex;
+            flex-direction: column;
+        }
+        button{
+            width:100px;
+            height: 40px;
+        }
+        #botoes{
+            display: flex;
+            flex-direction: row;
+            margin:10px;
+            padding:10px;
+        }
+        
+    </style>
+    <h1>Fale conosco</h1>
+    <p> Deixe sua mensagem</p>
+    <div id="form">
+        <input type="text" name="mensagem" id="input">
+        <div id="botoes">
+        <button id="adicionar" onclick="adicionar()">Adicionar</button>
+        <button id="salvar" onclick="salvar()">Salvar mensagem</button>
+        <button id="mostrarMsg" onclick="mostrarMsg()">Mostrar mensagem</button>
+    </div>
+    <p id="resultado"></p>
+    </div>
+    <script src="questao08.js"></script>
+</body>
+</html>
