@@ -26,14 +26,16 @@ let playlist = [
   },
 ];
 function deletarLinha() {
-    
-    document.querySelectorAll("button").forEach (function(button){
-        button.addEventListener("click", function(evento){
-            let elemento = evento.target.id
-            localStorage.removeItem(elemento)
-            atualizarTabela();
-        });
+  document.querySelectorAll("button").forEach(function (button) {
+    button.addEventListener("click", function (evento) {
+      let confirmacao = window.confirm("Tem certeza que deseja excluir?");
+      if (confirmacao) {
+        let elemento = evento.target.id;
+        localStorage.removeItem(elemento);
+        atualizarTabela();
+      }
     });
+  });
 }
 playlist.forEach((titulo) => {
   localStorage.setItem(titulo.nome, titulo.cantor);
@@ -51,4 +53,5 @@ function atualizarTabela() {
   }
   deletarLinha();
 }
+
 atualizarTabela();
