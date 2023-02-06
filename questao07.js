@@ -1,57 +1,54 @@
 let tabela = document.querySelector("#tabela");
-let linhas = document.getElementsByTagName("tr");
 let playlist = [
-    {
-        nome: "Listen to your heart",
-        cantor:"Roxette"
-    },
-    {
-        nome: "Bloody Mary",
-        cantor:"Lady Gaga"
-    },
-    {
-        nome: "Bones",
-        cantor:"Imagine Dragons"
-    },
-    {
-        nome: "Sugar honey ice and tea",
-        cantor:"Bring me the horizon"
-    },
-    {
-        nome: "Rock you like a hurricane",
-        cantor:"Scorpions"
-    },
-    {
-        nome: "Pure/Honey",
-        cantor:"Beyoncé"
-    },
+  {
+    nome: "Listen to your heart",
+    cantor: "Roxette",
+  },
+  {
+    nome: "Bloody Mary",
+    cantor: "Lady Gaga",
+  },
+  {
+    nome: "Bones",
+    cantor: "Imagine Dragons",
+  },
+  {
+    nome: "Sugar honey ice and tea",
+    cantor: "Bring me the horizon",
+  },
+  {
+    nome: "Rock you like a hurricane",
+    cantor: "Scorpions",
+  },
+  {
+    nome: "Pure/Honey",
+    cantor: "Beyoncé",
+  },
 ];
-
-
-
-function deletarItem(){
-    for (let i = 0; i < tabela.length; i++) {
-    if(index == i){
-        linhas.deleteRow(i);
-    }
+function deletarLinha() {
+    
+    document.querySelectorAll("button").forEach (function(button){
+        button.addEventListener("click", function(evento){
+            let elemento = evento.target.id
+            localStorage.removeItem(elemento)
+            atualizarTabela();
+        });
+    });
 }
+playlist.forEach((titulo) => {
+  localStorage.setItem(titulo.nome, titulo.cantor);
+});
+
+function atualizarTabela() {
+  tabela.innerHTML = "";
+  for (let i = 0; i < localStorage.length; i++) {
+    chave = localStorage.key(i);
+    tabela.innerHTML += `<tr>
+    <td>${chave}</td>
+    <td>${localStorage.getItem(chave)}</td>
+    <td><button id="${chave}" class=excluir onclick="deletarLinha()">Excluir item</button>
+    </tr>`;
+  }
+  deletarLinha();
 }
-let playlistString = JSON.stringify(playlist);
-
-localStorage.setItem("Melhores hits", playlistString);
-
-let playlistStringRetornada = localStorage.getItem("Melhores hits");
-
-playlistRetornadaeConvertida = JSON.parse(playlistStringRetornada);
-
-
-
-for (let i = 0; i < playlistRetornadaeConvertida.length; i++) {
-    tabela.innerHTML +=
-    `<tr>
-    <td>${playlistRetornadaeConvertida[i].nome}</td>
-    <td>${playlistRetornadaeConvertida[i].cantor}</td>
-    <td><button class="Excluir" onclick="deletarItem()">Excluir item</button>
-    </tr>`
-}
-
+atualizarTabela();
